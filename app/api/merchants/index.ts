@@ -1,5 +1,4 @@
 import { BASE_URL } from "..";
-// BASE URL =>  https://recruit.paysbypays.com/api/v1
 
 // 가맹점 목록 조회
 // https://recruit.paysbypays.com/api/v1/merchants/list
@@ -11,4 +10,4 @@ import { BASE_URL } from "..";
 
 export const getMerchantsListUrl = `${BASE_URL}/merchants/list`;
 
-export const getMerchantsDetailUrl = `${BASE_URL}/v1/merchants/details`;
+export const getMerchantsDetailUrl = `${BASE_URL}/merchants/details`;
