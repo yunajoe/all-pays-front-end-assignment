@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import "./reset.css";
 
 :root {
   --white: #ffffff;
@@ -38,11 +38,20 @@
   --purple-90: #581c87;
 
   --background: var(--blue-10);
-  --foreground: var(--gray-60);
+  --foreground: var(--gray-70);
+
+  /* device 사이즈 */
+  --mobile: 375px;
+  --tablet: 768px;
+  --desktop: 1280px;
 }
 
+html {
+  box-sizing: border-box;
+}
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0 auto;
 }

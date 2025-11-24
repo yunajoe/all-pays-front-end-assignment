@@ -1,27 +1,19 @@
-function MerchantsPage() {
-  /**
-   *  {
-      "mchtCode": "MCHT-CAFE-001",
-      "mchtName": "브런치커피 강남점",
-      "status": "ACTIVE",
-      "bizType": "CAFE"
-    },
-    {
-      "mchtCode": "MCHT-CAFE-002",
-      "mchtName": "브런치커피 판교점",
-      "status": "ACTIVE",
-    "bizType": "CAFE"
+import { getMerchantsListUrl } from "../api/merchants";
+import MerchantList from "./components/merchant-list";
 
-     {
-      "mchtCode": "MCHT-SHOP-002",
-      "mchtName": "올페이즈 디지털스토어",
-      "status": "ACTIVE",
-      "bizType": "SHOP"
-    },
-   * 
-   * 
-   */
-  return <div>가맹점 리스트 페이지 입니다.</div>;
+async function getMerchants() {
+  const response = await fetch(getMerchantsListUrl);
+  if (!response.ok) {
+    throw new Error("[Error] 가맹저 리스트를 불러올 수 없습니다.");
+  }
+  return response.json();
+}
+
+async function MerchantsPage() {
+  const merchants = await getMerchants();
+  const data = merchants.data;
+
+  return <MerchantList data={data} />;
 }
 
 export default MerchantsPage;
