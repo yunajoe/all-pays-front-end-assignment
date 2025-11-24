@@ -1,22 +1,44 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  --white: #ffffff;
+  --black: #000000;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* 블루 계열 */
+  --blue-10: #e0ebff;
+  --blue-20: #b3d4ff;
+  --blue-30: #80bbff;
+  --blue-40: #4d9fff;
+  --blue-50: #1d4ed8;
+  --blue-60: #1a40b1;
+  --blue-70: #15348a;
+  --blue-80: #0f2863;
+  --blue-90: #0b1c3c;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* 그레이 계열 */
+  --gray-10: #f9fafb;
+  --gray-20: #f3f4f6;
+  --gray-30: #e5e7eb;
+  --gray-40: #d1d5db;
+  --gray-50: #9ca3af;
+  --gray-60: #6b7280;
+  --gray-70: #4b5563;
+  --gray-80: #374151;
+  --gray-90: #1f2937;
+
+  /* 보라(Purple) 계열 */
+  --purple-10: #f3e8ff;
+  --purple-20: #e9d5ff;
+  --purple-30: #d8b4fe;
+  --purple-40: #c084fc;
+  --purple-50: #a855f7;
+  --purple-60: #9333ea;
+  --purple-70: #7e22ce;
+  --purple-80: #6b21a8;
+  --purple-90: #581c87;
+
+  --background: var(--blue-10);
+  --foreground: var(--gray-60);
 }
 
 body {
