@@ -51,12 +51,10 @@
 
 @media (min-width: 768px) {
   .container {
-    background-color: red;
   }
 }
 
 @media (min-width: 1280px) {
   .container {
-    background-color: blue;
   }
 }
