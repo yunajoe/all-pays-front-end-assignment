@@ -2,9 +2,20 @@
   min-height: 60px;
   padding: 10px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   font-size: 1.6rem;
   font-weight: var(--font-weight-semibold);
   background-color: var(--blue-10);
   color: var(--gray-60);
+}
+
+.menuList {
+  display: flex;
+  column-gap: 20px;
+  padding: 4px;
+
+  & a {
+    color: var(--gray-60);
+  }
 }

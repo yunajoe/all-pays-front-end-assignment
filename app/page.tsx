@@ -1,5 +1,5 @@
-import MerchantsPage from "./merchants/page";
+import DashBoardPage from "./dashboard/page";
 
 export default function Home() {
-  return <MerchantsPage />;
+  return <DashBoardPage />;
 }
