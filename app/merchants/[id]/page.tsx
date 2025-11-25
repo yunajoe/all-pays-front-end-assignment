@@ -1,26 +1,25 @@
-function MerchantsDetailPage() {
-  /**
-   * 
-   * {
-  "status": 200,
-  "message": "success",
-  "data": {
-    "mchtCode": "MCHT-TRAVEL-001",
-    "mchtName": "올페이즈 항공 예약",
-    "status": "ACTIVE",
-    "bizType": "TRAVEL",
-    "bizNo": "101-11-00018",
-    "address": "서울 중구 세종대로 10",
-    "phone": "02-555-0001",
-    "email": "air@allphazetravel.com",
-    "registeredAt": "2025-10-21T00:00:00",
-    "updatedAt": "2025-10-21T00:00:00"
-  }
+import { getMerchantDetailUrl } from "@/app/api/merchants";
+import MerchantItem from "./components/merchant-item";
+
+interface MerchantsDetailPageProps {
+  params: Promise<{ id: string }>;
 }
-   * 
-   * 
-   */
-  return <div>가맹점 상세 페이지 입니다.</div>;
+
+async function getMerchant(id: string) {
+  const url = getMerchantDetailUrl(id);
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error("[Error] 가맹점 상세 정보를 불러올 수 없습니다.");
+  }
+  return response.json();
+}
+
+async function MerchantsDetailPage({ params }: MerchantsDetailPageProps) {
+  const { id } = await params;
+  const merchants = await getMerchant(id);
+  const data = merchants.data;
+
+  return <MerchantItem data={data} />;
 }
 
 export default MerchantsDetailPage;
