@@ -1,0 +1,55 @@
+.container {
+}
+
+.button {
+  min-width: 120px;
+  border: none;
+  outline: none;
+  border: 2px solid var(--blue-30);
+  background-color: var(--white);
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--blue-40);
+    color: var(--white);
+  }
+}
+
+.dropdownWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.chevron {
+  position: absolute;
+  top: 15%;
+  right: 5px;
+  width: 20px;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.menuContainer {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+/* chevron: {
+    width: '1.25rem',
+    height: '1.25rem',
+    color: '#4b5563',
+    transition: 'transform 0.2s'
+  },
+  chevronOpen: {
+    transform: 'rotate(180deg)'
+  }, */
