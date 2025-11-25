@@ -6,7 +6,6 @@ interface MerchantItemProps {
 }
 
 function MerchantItem({ data }: MerchantItemProps) {
-  console.log("데이터 입니다앙 ===>>", data);
   const {
     address,
     bizNo,
