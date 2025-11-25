@@ -1,15 +1,43 @@
 "use client";
 
 import Dropdown from "@/app/components/dropdown";
+import Pagination from "@/app/components/pagination";
 import styles from "@/app/merchants/page.module.css";
 import { Merchant } from "@/app/types/merchants";
+import { useCallback, useMemo, useState } from "react";
 import { MERCHANT_DROPDOWN_MENU_OPTIONS } from "../utils/const";
 
 interface MerchantListProps {
   data: Merchant[];
 }
 
+const COUNT_NUM = 6;
+
 function MerchantList({ data }: MerchantListProps) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [startIndex, setStartIndex] = useState(0);
+  const [endIndex, setEndIndex] = useState(6);
+
+  const renderData = useMemo(() => {
+    return data.slice(startIndex, endIndex);
+  }, [startIndex, endIndex, data]);
+
+  const handlePage = useCallback(
+    (page: number) => {
+      setCurrentPage(page);
+      const calStartIndex = page * 6 - 6;
+      const calEndIndex = page * 6;
+      setStartIndex(calStartIndex);
+      setEndIndex(calEndIndex);
+    },
+    [currentPage]
+  );
+
+  const pages = Array.from(
+    { length: Math.ceil(data.length / COUNT_NUM) },
+    (_, index) => index + 1
+  );
+
   return (
     <div className={styles.container}>
       <div className={styles.searchContainer}>
@@ -22,7 +50,7 @@ function MerchantList({ data }: MerchantListProps) {
           <div>상세 필터</div>
         </div>
         <div className={styles.cardListContainer}>
-          {data.map((item, index) => {
+          {renderData.map((item, index) => {
             const { mchtCode, mchtName, status, bizType } = item;
             return (
               <div className={styles.card} key={index}>
@@ -34,7 +62,11 @@ function MerchantList({ data }: MerchantListProps) {
           })}
         </div>
       </div>
-      {/* <div>페이지네이션 바 </div> */}
+      <Pagination
+        totalPages={pages}
+        currentPage={currentPage}
+        handlePage={handlePage}
+      />
     </div>
   );
 }
