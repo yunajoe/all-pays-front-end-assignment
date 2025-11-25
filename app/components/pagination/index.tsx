@@ -5,12 +5,24 @@ interface PaginationProps {
   totalPages: number[];
   currentPage: number;
   handlePage: (page: number) => void;
+  handlePrevPage: (page: number) => void;
+  handleNextPage: (page: number) => void;
 }
 
-function Pagination({ totalPages, currentPage, handlePage }: PaginationProps) {
+function Pagination({
+  totalPages,
+  currentPage,
+  handlePage,
+  handlePrevPage,
+  handleNextPage,
+}: PaginationProps) {
   return (
     <div className={styles.container}>
-      <ChevronLeft size={18} />
+      <ChevronLeft
+        className={styles.chevron}
+        size={20}
+        onClick={() => handlePrevPage(currentPage)}
+      />
       {totalPages.map((page, index) => {
         return (
           <button
@@ -24,7 +36,11 @@ function Pagination({ totalPages, currentPage, handlePage }: PaginationProps) {
           </button>
         );
       })}
-      <ChevronRight size={18} />
+      <ChevronRight
+        className={styles.chevron}
+        size={20}
+        onClick={() => handleNextPage(currentPage)}
+      />
     </div>
   );
 }

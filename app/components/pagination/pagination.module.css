@@ -1,5 +1,4 @@
 .container {
-  border: 1px solid blue;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,5 +19,9 @@
 
 .button.selected {
   background: var(--blue-30);
-  pointer-events: none; /* 클릭/hover 이벤트 무시 */
+  pointer-events: none;
+}
+
+.chevron {
+  cursor: pointer;
 }
