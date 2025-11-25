@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Header from "./components/header";
 import "./globals.css";
 export const metadata: Metadata = {
   title: "올페이지 결제 시스템",
@@ -12,7 +13,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
