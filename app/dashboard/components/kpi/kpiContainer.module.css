@@ -1,0 +1,15 @@
+.kpiContainer {
+  display: grid;
+  grid-template-columns: (1, fr);
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 1280px) {
+}

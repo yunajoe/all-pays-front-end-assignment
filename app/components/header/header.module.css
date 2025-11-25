@@ -4,18 +4,30 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   font-weight: var(--font-weight-semibold);
   background-color: var(--blue-10);
   color: var(--gray-60);
 }
 
 .menuList {
-  display: flex;
-  column-gap: 20px;
-  padding: 4px;
+  display: none;
 
   & a {
     color: var(--gray-60);
   }
+}
+
+@media (min-width: 768px) {
+  .nav {
+    font-size: 1.4rem;
+  }
+  .menuList {
+    display: flex;
+    column-gap: 20px;
+    padding: 4px;
+  }
+}
+
+@media (min-width: 1280px) {
 }

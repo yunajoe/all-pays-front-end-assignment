@@ -6,13 +6,6 @@
   height: 100%;
   row-gap: 80px;
   padding: 20px;
-
-  @media (min-width: 768px) {
-    row-gap: 100px;
-  }
-  @media (min-width: 1280px) {
-    row-gap: 120px;
-  }
 }
 
 .wrapper {
@@ -64,6 +57,9 @@
 }
 
 @media (min-width: 768px) {
+  .container {
+    row-gap: 100px;
+  }
 }
 
 @media (min-width: 1280px) {

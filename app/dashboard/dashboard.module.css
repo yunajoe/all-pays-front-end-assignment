@@ -1,0 +1,23 @@
+.container {
+  background-color: var(--gray-10);
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+.merchantContainer {
+}
+
+.paymentMethodContainer {
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 1280px) {
+}
