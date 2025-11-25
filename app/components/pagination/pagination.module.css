@@ -1,0 +1,24 @@
+.container {
+  border: 1px solid blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+}
+
+.button {
+  border: none;
+  outline: none;
+  background: var(--gray-30);
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.button:hover {
+  background: var(--blue-10);
+}
+
+.button.selected {
+  background: var(--blue-30);
+  pointer-events: none; /* 클릭/hover 이벤트 무시 */
+}
