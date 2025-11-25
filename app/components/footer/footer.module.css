@@ -1,0 +1,27 @@
+.footer {
+  min-height: 80px;
+  padding: 14px 80px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: var(--font-weight-semibold);
+  background-color: var(--blue-50);
+  color: var(--white);
+}
+.info {
+  display: flex;
+  column-gap: 20px;
+}
+.section {
+  display: flex;
+  flex-direction: column;
+
+  & h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+
+  a {
+    font-family: 1rem;
+    color: var(--black);
+  }
+}

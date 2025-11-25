@@ -5,4 +5,6 @@
   align-items: center;
   font-size: 1.6rem;
   font-weight: var(--font-weight-semibold);
+  background-color: var(--blue-10);
+  color: var(--gray-60);
 }
