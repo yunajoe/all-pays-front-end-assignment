@@ -8,7 +8,7 @@ import {
   calculatePaymentRate,
   calculateSuccessPaymentMoney,
 } from "../../utils";
-import styles from "./kpiContainer.module.css";
+import styles from "./kpi-container.module.css";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 interface KpiContainerProps {
@@ -35,7 +35,6 @@ function KpiContainer({ data }: KpiContainerProps) {
       <h2 className={styles.title}>KPIS</h2>
       <p>결제 현황 및 주요 지표를 확인</p>
       <div className={styles.chartContainer}>
-        {/* card1 */}
         <div className={styles.chart}>
           <div className={styles.descriptionContainer}>
             <div className={styles.description}>
@@ -48,7 +47,7 @@ function KpiContainer({ data }: KpiContainerProps) {
           </div>
           <Pie data={chartData} />
         </div>
-        {/* card2 */}
+
         <div className={styles.chart}>
           <div className={styles.descriptionContainer}>
             <div className={styles.description}>
@@ -59,7 +58,6 @@ function KpiContainer({ data }: KpiContainerProps) {
             <CircleDollarSign size={48} />
           </div>
         </div>
-
         <div className={styles.chart}>
           <div className={styles.descriptionContainer}>
             <div className={styles.description}>
