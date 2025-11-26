@@ -18,7 +18,7 @@ async function DashBoardPage() {
     <div className={styles.container}>
       <KpiContainer data={data} />
 
-      <PaymentMethodContainer />
+      <PaymentMethodContainer data={data} />
 
       {/* 2. Top 5 가맹점   */}
       <div className={styles.merchantContainer}></div>

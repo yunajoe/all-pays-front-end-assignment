@@ -1,5 +1,6 @@
 "use client";
 
+import { Payment } from "@/app/types/payment";
 import {
   BarElement,
   CategoryScale,
@@ -10,6 +11,8 @@ import {
   Tooltip,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import { calculatePaymentMethodTableData } from "../../utils";
+import PaymentMethodTable from "../table/payment-method-table";
 import styles from "./payment-method-container.module.css";
 
 ChartJS.register(
@@ -20,7 +23,13 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-function PaymentMethodContainer() {
+
+interface PaymentMethodContainerProps {
+  data: Payment[];
+}
+
+function PaymentMethodContainer({ data }: PaymentMethodContainerProps) {
+  calculatePaymentMethodTableData(data);
   const options = {
     plugins: {
       title: {
@@ -49,7 +58,7 @@ function PaymentMethodContainer() {
     "July",
   ];
 
-  const data = {
+  const data2 = {
     labels,
     datasets: [
       {
@@ -75,57 +84,14 @@ function PaymentMethodContainer() {
   return (
     <div className={styles.container}>
       <h3 className={styles.title}>결제 수단 분석</h3>
-      <table className={styles.table}>
-        <thead className={styles.tHead}>
-          <tr>
-            <th>결제 수단</th>
-            <th>성공 건수</th>
-            <th>실패 건수</th>
-            <th>총 금액</th>
-            <th>성공률</th>
-          </tr>
-        </thead>
-        <tbody className={styles.tBody}>
-          <tr>
-            <td>ONLINE</td>
-            <td>1</td>
-            <td>2</td>
-            <td>1000</td>
-            <td>80%</td>
-          </tr>
-          <tr>
-            <td>DEVICE</td>
-            <td>1</td>
-            <td>2</td>
-            <td>1000</td>
-            <td>80%</td>
-          </tr>
-          <tr>
-            <td>MOBILE</td>
-            <td>1</td>
-            <td>2</td>
-            <td>1000</td>
-            <td>80%</td>
-          </tr>
-          <tr>
-            <td>VACT</td>
-            <td>1</td>
-            <td>2</td>
-            <td>1000</td>
-            <td>80%</td>
-          </tr>
-          <tr>
-            <td>BILING</td>
-            <td>1</td>
-            <td>2</td>
-            <td>1000</td>
-            <td>80%</td>
-          </tr>
-        </tbody>
-      </table>
+      <PaymentMethodTable data={data} />
       <div>
         <h3 className={styles.subTitle}>결제 수단별 금액 비교 (단위:천원)</h3>
-        <Bar options={options} data={data} />;
+        <Bar options={options} data={data2} />;
+      </div>
+      <div>
+        <h3 className={styles.subTitle}>결제 수단별 비율</h3>
+        {/* <Pie data={chartData} /> */}
       </div>
     </div>
   );

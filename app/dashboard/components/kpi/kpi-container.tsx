@@ -8,6 +8,7 @@ import {
   calculatePaymentRate,
   calculateSuccessPaymentMoney,
 } from "../../utils";
+import { KPI_CHART_DATA } from "../../utils/const";
 import styles from "./kpi-container.module.css";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -19,17 +20,8 @@ function KpiContainer({ data }: KpiContainerProps) {
   const { success, pending, cancel, fail } = calculatePaymentRate(data);
   const successPaySum = calculateSuccessPaymentMoney(data);
   const failedPaySum = calculateFailPaymentMoney(data);
-  const chartData = {
-    labels: ["결제 완료", "결제 실패", "결제 대기", "환불 완료"],
-    datasets: [
-      {
-        label: "거래 내역 현황",
-        data: [success, fail, pending, cancel],
-        backgroundColor: ["#42b411ff", "#a11010ff", "#19284dff", "#a16410ff"],
-        hoverOffset: 10,
-      },
-    ],
-  };
+  const chartData = KPI_CHART_DATA(success, fail, pending, cancel);
+
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>KPIS</h2>
