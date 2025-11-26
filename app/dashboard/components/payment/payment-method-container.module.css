@@ -1,7 +1,9 @@
 .container {
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
+  row-gap: 30px;
+  width: 100%;
+  border: 5px solid red;
 }
 
 .title {
@@ -14,8 +16,38 @@
   font-weight: var(--font-weight-medium);
 }
 
+.paymentMethodContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.chartContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.chart {
+  border-radius: 10px;
+  border: 1px solid var(--gray-40);
+  transition: transform 0.2s, box-shadow 0.2s;
+  padding: 80px 40px;
+  width: 100%;
+}
+
 @media (min-width: 768px) {
+  .container {
+    max-width: 1000px;
+  }
+  .chartContainer {
+  }
 }
 
 @media (min-width: 1280px) {
+  .container {
+    max-width: 1200px;
+  }
+  .chartContainer {
+    flex-direction: row;
+  }
 }

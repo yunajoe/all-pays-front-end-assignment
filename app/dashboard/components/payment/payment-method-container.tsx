@@ -52,15 +52,19 @@ function PaymentMethodContainer({ data }: PaymentMethodContainerProps) {
 
   return (
     <div className={styles.container}>
-      <h3 className={styles.title}>결제 수단 분석</h3>
-      <PaymentMethodTable data={tableData} />
-      <div>
-        <h3 className={styles.subTitle}>결제 수단별 금액 비교 (단위:천원)</h3>
-        <Bar options={options} data={result} />;
+      <div className={styles.paymentMethodContainer}>
+        <h3 className={styles.title}>결제 수단 분석</h3>
+        <PaymentMethodTable data={tableData} />
       </div>
-      <div>
-        <h3 className={styles.subTitle}>결제 수단별 비율</h3>
-        <Pie data={pieData} />
+      <div className={styles.chartContainer}>
+        <div className={styles.chart}>
+          <h3 className={styles.subTitle}>결제 수단별 금액 비교 (단위:천원)</h3>
+          <Bar options={options} data={result} />;
+        </div>
+        <div className={styles.chart}>
+          <h3 className={styles.subTitle}>결제 수단별 비율</h3>
+          <Pie data={pieData} />
+        </div>
       </div>
     </div>
   );
