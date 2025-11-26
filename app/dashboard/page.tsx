@@ -16,7 +16,7 @@ async function DashBoardPage() {
   return (
     <div className={styles.container}>
       {/* 1. KPIs / 핵심 지표  */}
-      <KpiContainer />
+      <KpiContainer data={data} />
 
       {/* 2. Top 5 가맹점   */}
       <div className={styles.merchantContainer}></div>

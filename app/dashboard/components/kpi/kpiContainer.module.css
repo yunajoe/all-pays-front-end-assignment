@@ -1,6 +1,7 @@
-.kpiContainer {
-  display: grid;
-  grid-template-columns: (1, fr);
+.container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
 }
 
 .title {
@@ -8,8 +9,37 @@
   font-weight: var(--font-weight-semibold);
 }
 
+.chartContainer {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(140px, 1fr));
+  grid-template-rows: repeat(4, minmax(200px, 1fr));
+  gap: 18px;
+  justify-content: center;
+}
+
+.chart {
+  min-width: 180px;
+  border-radius: 10px;
+  border: 1px solid blue;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.chart:hover {
+  transform: translateY(-6px);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px;
+}
+
 @media (min-width: 768px) {
+  .chartContainer {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
 }
 
 @media (min-width: 1280px) {
+  .chartContainer {
+    border: 5px solid red;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
 }
