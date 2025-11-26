@@ -13,3 +13,25 @@ export const calculatePaymentRate = (data: Payment[]) => {
     fail: failStatus.length,
   };
 };
+
+export const calculateSuccessPaymentMoney = (data: Payment[]) => {
+  const result = data
+    .filter((value) => value.status === "SUCCESS")
+    .reduce((acc, value) => {
+      const amount = Number(value.amount);
+      acc += amount;
+      return acc;
+    }, 0);
+  return result.toLocaleString();
+};
+
+export const calculateFailPaymentMoney = (data: Payment[]) => {
+  const result = data
+    .filter((value) => value.status === "FAILED")
+    .reduce((acc, value) => {
+      const amount = Number(value.amount);
+      acc += amount;
+      return acc;
+    }, 0);
+  return result.toLocaleString();
+};
