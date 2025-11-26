@@ -1,5 +1,6 @@
 import { Payment } from "@/app/types/payment";
 import { PaymentResult } from "@/app/types/preprocess";
+import { StackChartFormat } from "./../../types/preprocess";
 
 export const calculatePaymentRate = (data: Payment[]) => {
   const successStatus = data.filter((value) => value.status === "SUCCESS");
@@ -77,16 +78,27 @@ export const calculatePaymentMethodTableData = (data: Payment[]) => {
     })[0];
     const success = calculatePaymentMethodSuccess(value);
     const fail = calculatePaymentMethodFail(value);
-    const amount = calculatePaymentAmount(success);
+    const successAmount = calculatePaymentAmount(success);
+    const failAmount = calculatePaymentAmount(fail);
     const successRate = success.length;
     const newObject = {
       payType,
       success: success.length,
       fail: fail.length,
-      amount: amount.toLocaleString(),
+      successAmount,
+      failAmount,
       successRate,
     };
     acc = [...acc, newObject];
     return acc;
   }, [] as PaymentResult[]);
+};
+
+export const calculatePaymentMethodStackBarData = (data: PaymentResult[]) => {
+  const newObject: StackChartFormat = {};
+  data.forEach((item) => {
+    const { payType, success, fail, successAmount, failAmount } = item;
+    newObject[payType] = { success, fail, successAmount, failAmount };
+  });
+  return newObject;
 };
