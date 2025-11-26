@@ -1,5 +1,6 @@
 import { getPaymentsListUrl } from "../api/payments";
-import KpiContainer from "./components/kpi/kpiContainer";
+import KpiContainer from "./components/kpi/kpi-container";
+import PaymentMethodContainer from "./components/payment/payment-method-container";
 import styles from "./dashboard.module.css";
 
 async function getPayments() {
@@ -15,14 +16,12 @@ async function DashBoardPage() {
   const data = payments.data;
   return (
     <div className={styles.container}>
-      {/* 1. KPIs / 핵심 지표  */}
       <KpiContainer data={data} />
+
+      <PaymentMethodContainer />
 
       {/* 2. Top 5 가맹점   */}
       <div className={styles.merchantContainer}></div>
-
-      {/* 결제 수단별  */}
-      <div className={styles.paymentMethodContainer}></div>
     </div>
   );
 }
