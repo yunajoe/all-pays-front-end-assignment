@@ -1,5 +1,6 @@
 import { getPaymentsListUrl } from "../api/payments";
 import KpiContainer from "./components/kpi/kpi-container";
+import MerchantContainer from "./components/merchant/merchant-container";
 import PaymentMethodContainer from "./components/payment/payment-method-container";
 import styles from "./dashboard.module.css";
 
@@ -20,8 +21,8 @@ async function DashBoardPage() {
 
       <PaymentMethodContainer data={data} />
 
-      {/* 2. Top 5 가맹점   */}
-      <div className={styles.merchantContainer}></div>
+      {/*  TODO: 가맹점 */}
+      <MerchantContainer />
     </div>
   );
 }
