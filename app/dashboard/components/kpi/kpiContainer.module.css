@@ -20,13 +20,26 @@
 .chart {
   min-width: 180px;
   border-radius: 10px;
-  border: 1px solid blue;
+  border: 1px solid var(--gray-40);
   transition: transform 0.2s, box-shadow 0.2s;
+  padding: 20px 40px;
 }
 
 .chart:hover {
   transform: translateY(-6px);
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px;
+}
+
+.descriptionContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
 }
 
 @media (min-width: 768px) {
@@ -38,7 +51,6 @@
 
 @media (min-width: 1280px) {
   .chartContainer {
-    border: 5px solid red;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
   }
