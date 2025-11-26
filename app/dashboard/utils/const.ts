@@ -59,18 +59,19 @@ export const PAYMENT_METHOD_STACK_BAR_DATA = (data: StackChartFormat) => {
   return { options, result };
 };
 
-export const PAYMENT_METHOD_CHART_DATA = (
-  success: number,
-  fail: number,
-  pending: number,
-  cancel: number
+export const PAYMENT_METHOD_PIE_DATA = (
+  online: number,
+  device: number,
+  mobile: number,
+  vact: number,
+  billing: number
 ) => {
   return {
     labels: ["ONLINE", "DEVICE", "MOBILE", "VACT", "BILLING"],
     datasets: [
       {
         label: "거래 내역 현황",
-        data: [success, fail, pending, cancel],
+        data: [online, device, mobile, vact, billing],
         backgroundColor: [
           "#42b411ff",
           "#672b9fff",
