@@ -1,17 +1,17 @@
 .container {
-  border: 1px solid blue;
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
+  row-gap: 20px;
 }
 
 .title {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: var(--font-weight-semibold);
 }
 
 .subTitle {
   font-size: 1.6rem;
+  font-weight: var(--font-weight-medium);
 }
 
 @media (min-width: 768px) {

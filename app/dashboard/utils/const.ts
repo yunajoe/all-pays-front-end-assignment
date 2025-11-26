@@ -1,3 +1,13 @@
+import { StackChartFormat } from "@/app/types/preprocess";
+
+export const PAYMENT_METHOD_TABLE_TITLES = [
+  "결제 수단",
+  "성공 건수",
+  "실패 건수",
+  "결제 금액",
+  "성공률",
+];
+
 export const KPI_CHART_DATA = (
   success: number,
   fail: number,
@@ -14,6 +24,39 @@ export const KPI_CHART_DATA = (
       },
     ],
   };
+};
+export const PAYMENT_METHOD_STACK_BAR_DATA = (data: StackChartFormat) => {
+  const options = {
+    responsive: true,
+    scales: {
+      x: {
+        stacked: true,
+      },
+      y: {
+        stacked: true,
+      },
+    },
+  };
+
+  const labels = ["ONLINE", "DEVICE", "MOBILE", "VACT", "BILLING"];
+
+  const result = {
+    labels,
+    datasets: [
+      {
+        label: "결제 성공",
+        data: labels.map((label) => data[label].successAmount),
+        backgroundColor: "rgb(16, 185, 129)",
+      },
+      {
+        label: "결제 실패",
+        data: labels.map((label) => data[label].failAmount),
+        backgroundColor: "rgb(255, 99, 132)",
+      },
+    ],
+  };
+
+  return { options, result };
 };
 
 export const PAYMENT_METHOD_CHART_DATA = (
