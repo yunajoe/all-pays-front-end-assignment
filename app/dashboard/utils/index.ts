@@ -38,7 +38,7 @@ export const calculateFailPaymentMoney = (data: Payment[]) => {
   return result.toLocaleString();
 };
 
-const calculatePaymentMethod = (data: Payment[]) => {
+export const calculatePaymentMethod = (data: Payment[]) => {
   const online = data.filter((value) => value.payType === "ONLINE");
   const device = data.filter((value) => value.payType === "DEVICE");
   const mobile = data.filter((value) => value.payType === "MOBILE");
@@ -101,4 +101,16 @@ export const calculatePaymentMethodStackBarData = (data: PaymentResult[]) => {
     newObject[payType] = { success, fail, successAmount, failAmount };
   });
   return newObject;
+};
+
+export const calculatePaymentMethodPieData = (data: Payment[]) => {
+  const { online, device, mobile, vact, billing } =
+    calculatePaymentMethod(data);
+  return {
+    online: online.length,
+    device: device.length,
+    mobile: mobile.length,
+    vact: vact.length,
+    billing: billing.length,
+  };
 };

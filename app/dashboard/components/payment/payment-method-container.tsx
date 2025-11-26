@@ -10,12 +10,16 @@ import {
   Title,
   Tooltip,
 } from "chart.js";
-import { Bar } from "react-chartjs-2";
+import { Bar, Pie } from "react-chartjs-2";
 import {
+  calculatePaymentMethodPieData,
   calculatePaymentMethodStackBarData,
   calculatePaymentMethodTableData,
 } from "../../utils";
-import { PAYMENT_METHOD_STACK_BAR_DATA } from "../../utils/const";
+import {
+  PAYMENT_METHOD_PIE_DATA,
+  PAYMENT_METHOD_STACK_BAR_DATA,
+} from "../../utils/const";
 import PaymentMethodTable from "../table/payment-method-table";
 import styles from "./payment-method-container.module.css";
 
@@ -36,6 +40,15 @@ function PaymentMethodContainer({ data }: PaymentMethodContainerProps) {
   const tableData = calculatePaymentMethodTableData(data);
   const stackBarData = calculatePaymentMethodStackBarData(tableData);
   const { options, result } = PAYMENT_METHOD_STACK_BAR_DATA(stackBarData);
+  const { online, device, mobile, vact, billing } =
+    calculatePaymentMethodPieData(data);
+  const pieData = PAYMENT_METHOD_PIE_DATA(
+    online,
+    device,
+    mobile,
+    vact,
+    billing
+  );
 
   return (
     <div className={styles.container}>
@@ -47,7 +60,7 @@ function PaymentMethodContainer({ data }: PaymentMethodContainerProps) {
       </div>
       <div>
         <h3 className={styles.subTitle}>결제 수단별 비율</h3>
-        {/* <Pie data={chartData} /> */}
+        <Pie data={pieData} />
       </div>
     </div>
   );
