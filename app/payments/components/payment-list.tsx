@@ -7,7 +7,6 @@ interface PaymentListProps {
   data: Payment[];
 }
 function PaymentList({ data }: PaymentListProps) {
-  console.log("거래내역 데이터  ===>", data);
   const [paymentsData, setPaymentsData] = useState(data);
   return (
     <div className={styles.container}>
