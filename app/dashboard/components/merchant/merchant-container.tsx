@@ -41,7 +41,7 @@ function MerchantContainer({
       </div>
       <div className={styles.chartContainer}>
         <div className={styles.chart}>
-          <h3 className={styles.subTitle}>가맹점열 결제 금액 비교</h3>
+          <h3 className={styles.subTitle}>가맹점별 결제 금액 비교</h3>
           <Bar options={options} data={result} />
         </div>
       </div>
