@@ -16,3 +16,18 @@ export type StackChartFormat = Record<
     failAmount: number;
   }
 >;
+
+export interface MerchantInfoBase {
+  mchtCode: string;
+  totalAmount: number;
+}
+
+interface MerchantInfo extends MerchantInfoBase {
+  mchtName?: string;
+  bizType?: string;
+  status?: string;
+}
+
+export interface MerchantInfoMap {
+  [key: string]: MerchantInfo;
+}
