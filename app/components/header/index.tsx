@@ -6,7 +6,7 @@ function Header() {
       <p>올페이즈 결제 시스템</p>
       <ul className={styles.menuList}>
         <Link href="/">대시보드</Link>
-        <Link href="/payments">결제&정산 관리</Link>
+        <Link href="/payments">결제 관리</Link>
         <Link href="/merchants">가맹점 관리</Link>
       </ul>
     </nav>

@@ -24,6 +24,8 @@
 .chartContainer {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  row-gap: 40px;
 }
 
 .chart {
@@ -36,9 +38,7 @@
 
 @media (min-width: 768px) {
   .container {
-    max-width: 1000px;
-  }
-  .chartContainer {
+    max-width: 800px;
   }
 }
 
@@ -47,6 +47,12 @@
     max-width: 1200px;
   }
   .chartContainer {
+    max-width: 1200px;
     flex-direction: row;
+    column-gap: 80px;
+  }
+  .chart {
+    max-width: 600px;
+    flex: 1;
   }
 }
