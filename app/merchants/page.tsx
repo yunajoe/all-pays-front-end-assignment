@@ -2,7 +2,9 @@ import { getMerchantsListUrl } from "@/app/api/merchants";
 import MerchantList from "./components/merchant-list";
 
 async function getMerchants() {
-  const response = await fetch(getMerchantsListUrl);
+  const response = await fetch(getMerchantsListUrl, {
+    next: { revalidate: 10 },
+  });
   if (!response.ok) {
     throw new Error("[Error] 가맹점 리스트를 불러올 수 없습니다.");
   }

@@ -14,3 +14,10 @@ export const PaymentStatusSchema = z.enum([
   "FAILED",
   "CANCELLED",
 ]);
+
+export const MerchantsStatusSchema = z.enum([
+  "READY",
+  "ACTIVE",
+  "INACTIVE",
+  "CLOSED",
+]);
