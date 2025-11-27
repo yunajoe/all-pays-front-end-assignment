@@ -1,4 +1,5 @@
 import { Merchant } from "@/app/types/merchants";
+import { DateTime } from "luxon";
 
 export enum DropdownMenu {
   MCHT_NAME = "상호명",
@@ -38,3 +39,6 @@ export const sortedByDropdownMenu = (data: Merchant[], menu: string) => {
   }
   return copyData;
 };
+
+export const formatDate = (isoDate?: string) =>
+  isoDate ? DateTime.fromISO(isoDate).toFormat("yyyy-LL-dd") : "-";
