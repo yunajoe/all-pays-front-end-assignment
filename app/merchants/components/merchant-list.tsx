@@ -6,7 +6,7 @@ import useDebounce from "@/app/hooks/use-debounce";
 import styles from "@/app/merchants/components/merchant-list.module.css";
 import { Merchant } from "@/app/types/merchants";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, useCallback, useMemo, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { MERCHANT_DROPDOWN_MENU_OPTIONS } from "../utils/const";
 
 interface MerchantListProps {
@@ -27,20 +27,17 @@ function MerchantList({ data }: MerchantListProps) {
   const router = useRouter();
   const { debounceValue, debounceValueLoading } = useDebounce(
     searchValue,
-    3000
-  );
-
-  console.log(
-    "debounceValue ===>",
-    debounceValue,
-    "LOADING ===>>>",
-    debounceValueLoading
+    1000
   );
 
   const renderData = useMemo(() => {
     return merchantsData.slice(startIndex, endIndex);
   }, [startIndex, endIndex, merchantsData]);
 
+  const pages = Array.from(
+    { length: Math.ceil(merchantsData.length / COUNT_NUM) },
+    (_, index) => index + 1
+  );
   const handleSearchValueChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchValue(value);
@@ -71,20 +68,37 @@ function MerchantList({ data }: MerchantListProps) {
 
   const handleNextPage = useCallback(
     (page: number) => {
-      if (page === 4) return;
+      if (page === pages.length) return;
       setCurrentPage(page + 1);
       const calStartIndex = (page + 1) * COUNT_NUM - COUNT_NUM;
       const calEndIndex = (page + 1) * COUNT_NUM;
       setStartIndex(calStartIndex);
       setEndIndex(calEndIndex);
     },
-    [currentPage]
+    [currentPage, pages.length]
   );
 
-  const pages = Array.from(
-    { length: Math.ceil(data.length / COUNT_NUM) },
-    (_, index) => index + 1
-  );
+  const searchedData = useMemo(() => {
+    const copyData = [...data];
+    const copyMerchantsData = [...merchantsData];
+    const trimmedValue = debounceValue.trim();
+    if (trimmedValue === "") {
+      return copyData;
+    }
+
+    return copyMerchantsData.filter((item) => {
+      const { mchtName } = item;
+      if (mchtName.includes(trimmedValue)) {
+        return true;
+      }
+    });
+  }, [debounceValue, merchantsData, data]);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMerchantsData(searchedData);
+    setCurrentPage(1);
+  }, [debounceValue]);
 
   return (
     <div className={styles.container}>
@@ -106,7 +120,7 @@ function MerchantList({ data }: MerchantListProps) {
               setSelectedMenu={setSelectedMenu}
               options={MERCHANT_DROPDOWN_MENU_OPTIONS}
             />
-            <div></div>
+            <div />
           </div>
           <div className={styles.cardListContainer}>
             {renderData.map((item, index) => {
