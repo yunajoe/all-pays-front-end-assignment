@@ -1,5 +1,6 @@
+"use client";
+
 import { MerchantInfo } from "@/app/types/preprocess";
-import { getTopNByTotalAmount } from "../../utils";
 import { TOP_RANK_MERCHANTS_TABLE_TITLES } from "../../utils/const";
 import styles from "./top-rank-merchants-table.module.css";
 
@@ -8,8 +9,6 @@ interface TopRankMerchantsTableProps {
 }
 
 function TopRankMerchantsTable({ data }: TopRankMerchantsTableProps) {
-  const rankedData = getTopNByTotalAmount(data, 5);
-
   return (
     <table className={styles.table}>
       <thead className={styles.tHead}>
@@ -20,7 +19,7 @@ function TopRankMerchantsTable({ data }: TopRankMerchantsTableProps) {
         </tr>
       </thead>
       <tbody className={styles.tBody}>
-        {rankedData.map((item, index) => {
+        {data.map((item, index) => {
           const {
             mchtCode,
             totalAmount,

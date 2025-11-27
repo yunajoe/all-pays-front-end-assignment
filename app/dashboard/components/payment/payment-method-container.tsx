@@ -39,6 +39,7 @@ interface PaymentMethodContainerProps {
 function PaymentMethodContainer({ data }: PaymentMethodContainerProps) {
   const tableData = calculatePaymentMethodTableData(data);
   const stackBarData = calculatePaymentMethodStackBarData(tableData);
+
   const { options, result } = PAYMENT_METHOD_STACK_BAR_DATA(stackBarData);
   const { online, device, mobile, vact, billing } =
     calculatePaymentMethodPieData(data);
