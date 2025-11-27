@@ -1,14 +1,25 @@
 import styles from "@/app/components/dropdown/dropdown.module.css";
+import { sortedByDropdownMenu } from "@/app/merchants/utils";
+import { Merchant } from "@/app/types/merchants";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 
 interface DropdownProps {
+  merchantsData: Merchant[];
+  setMerchantsData: React.Dispatch<React.SetStateAction<Merchant[]>>;
   options: string[];
+  selectedMenu: string;
+  setSelectedMenu: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function Dropdown({ options }: DropdownProps) {
+function Dropdown({
+  merchantsData,
+  setMerchantsData,
+  options,
+  selectedMenu,
+  setSelectedMenu,
+}: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedMenu, setSelectedMenu] = useState("");
 
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -17,6 +28,8 @@ function Dropdown({ options }: DropdownProps) {
   const handleSelectedMenu = (option: string) => {
     setSelectedMenu(option);
     setIsOpen(false);
+    const sortedData = sortedByDropdownMenu(merchantsData, option);
+    setMerchantsData(sortedData);
   };
 
   return (

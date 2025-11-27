@@ -15,15 +15,17 @@ interface MerchantListProps {
 const COUNT_NUM = 6;
 
 function MerchantList({ data }: MerchantListProps) {
+  const [merchantsData, setMerchantsData] = useState<Merchant[]>(data);
   const [currentPage, setCurrentPage] = useState(1);
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(6);
+  const [selectedMenu, setSelectedMenu] = useState("");
 
   const router = useRouter();
 
   const renderData = useMemo(() => {
-    return data.slice(startIndex, endIndex);
-  }, [startIndex, endIndex, data]);
+    return merchantsData.slice(startIndex, endIndex);
+  }, [startIndex, endIndex, merchantsData]);
 
   const handlePage = useCallback(
     (page: number) => {
@@ -73,7 +75,13 @@ function MerchantList({ data }: MerchantListProps) {
         <div className={styles.listContainer}>
           <h2 className={styles.title}>가맹점 리스트 목록</h2>
           <div className={styles.filterContainer}>
-            <Dropdown options={MERCHANT_DROPDOWN_MENU_OPTIONS} />
+            <Dropdown
+              merchantsData={merchantsData}
+              setMerchantsData={setMerchantsData}
+              selectedMenu={selectedMenu}
+              setSelectedMenu={setSelectedMenu}
+              options={MERCHANT_DROPDOWN_MENU_OPTIONS}
+            />
             <div>상세 필터</div>
           </div>
           <div className={styles.cardListContainer}>
