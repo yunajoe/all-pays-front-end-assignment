@@ -1,5 +1,6 @@
+import { MerchantListItem } from "@/app/types/merchants";
 import { Payment } from "@/app/types/payment";
-import { PaymentResult } from "@/app/types/preprocess";
+import { MerchantInfoMap, PaymentResult } from "@/app/types/preprocess";
 import { StackChartFormat } from "./../../types/preprocess";
 
 export const calculatePaymentRate = (data: Payment[]) => {
@@ -113,4 +114,77 @@ export const calculatePaymentMethodPieData = (data: Payment[]) => {
     vact: vact.length,
     billing: billing.length,
   };
+};
+
+// 2개의 아이템을 한다면은?
+
+// 아래는 가메정 디테일 리스트
+//  {
+//     "mchtCode": "MCHT-CAFE-001",
+//     "mchtName": "브런치커피 강남점",
+//     "status": "ACTIVE",
+//     "bizType": "CAFE",
+//     "bizNo": "101-11-00001",
+//     "address": "서울 강남구 테헤란로 100",
+//     "phone": "02-111-0001",
+//     "email": "gangnam@brunchcafe.com",
+//     "registeredAt": "2025-10-01T00:00:00",
+//     "updatedAt": "2025-10-01T00:00:00"
+//   },
+
+// 아래는 결제 리스트
+// {
+//   "paymentCode": "PAY-20251103-0004",
+//   "mchtCode": "MCHT-MART-003",
+//   "amount": "25000.00",
+//   "currency": "KRW",
+//   "payType": "DEVICE",
+//   "status": "SUCCESS",
+//   "paymentAt": "2025-11-03T02:00:00"
+// },
+
+const matchWithMchtCode = (
+  merchantInfoBase: MerchantInfoMap,
+  merchantsDetailInfo: MerchantListItem[]
+) => {
+  const merchantInfo = { ...merchantInfoBase };
+  merchantsDetailInfo.forEach((item) => {
+    const { mchtCode, mchtName, bizType, status } = item;
+    if (merchantInfo[mchtCode]) {
+      merchantInfo[mchtCode] = {
+        ...merchantInfo[mchtCode],
+        mchtName,
+        bizType,
+        status,
+      };
+    }
+  });
+  return merchantInfo;
+};
+
+export const calculateMerchandisesStackBarData = (
+  paymentsInfo: Payment[],
+  merchantsDetailInfo: MerchantListItem[]
+) => {
+  const successTransactionData = calculatePaymentMethodSuccess(paymentsInfo);
+  const merchantInfoBase: MerchantInfoMap = {};
+
+  successTransactionData.forEach((item) => {
+    const { mchtCode, amount } = item;
+    const numAmount = parseFloat(amount);
+    if (!merchantInfoBase[mchtCode]) {
+      merchantInfoBase[mchtCode] = {
+        mchtCode,
+        totalAmount: numAmount,
+      };
+    } else {
+      const total = merchantInfoBase[mchtCode].totalAmount;
+      merchantInfoBase[mchtCode] = {
+        ...merchantInfoBase[mchtCode],
+        totalAmount: total + numAmount,
+      };
+    }
+  });
+
+  return matchWithMchtCode(merchantInfoBase, merchantsDetailInfo);
 };

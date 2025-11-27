@@ -1,3 +1,17 @@
 .container {
   border: 5px solid green;
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  width: 100%;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+.subTitle {
+  font-size: 1.6rem;
+  font-weight: var(--font-weight-medium);
 }
