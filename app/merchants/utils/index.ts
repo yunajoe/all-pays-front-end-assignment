@@ -36,6 +36,5 @@ export const sortedByDropdownMenu = (data: Merchant[], menu: string) => {
   } else if (menu === DropdownMenu.MCHT_TYPE) {
     copyData.sort((a, b) => a.bizType.localeCompare(b.bizType));
   }
-
   return copyData;
 };
