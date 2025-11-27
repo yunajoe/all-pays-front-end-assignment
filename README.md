@@ -7,7 +7,7 @@
 2. 프로젝트 루트에 .env.local 파일를 만들어 아래 환경 변수를 추가한다.
    NEXT_PUBLIC_BASE_URL=https://recruit.paysbypays.com/api/v1
 
-3. npm install 명령어로 node modules를 설치한다.
+3. npm install 명령어로 프로젝트에 필요한 패키지들을 설치한다.
 
 4. npm run start 명령어로 어플리케이션을 실행한다.
 
