@@ -35,7 +35,6 @@ async function DashBoardPage() {
 
       <PaymentMethodContainer data={paymentsInfo} />
 
-      {/*  TODO: 가맹점 */}
       <MerchantContainer
         paymentsInfo={paymentsInfo}
         merchantsDetailInfo={merchantsDetailInfo}

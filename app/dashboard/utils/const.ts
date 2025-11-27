@@ -8,6 +8,15 @@ export const PAYMENT_METHOD_TABLE_TITLES = [
   "성공률",
 ];
 
+export const TOP_RANK_MERCHANTS_TABLE_TITLES = [
+  "순위",
+  "가맹점 코드",
+  "가맹점 명",
+  "총 결제 금액",
+  "사업 형태",
+  "결제 건수",
+];
+
 export const KPI_CHART_DATA = (
   success: number,
   fail: number,

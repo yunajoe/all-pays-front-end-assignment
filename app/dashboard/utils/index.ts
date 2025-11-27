@@ -1,6 +1,10 @@
 import { MerchantListItem } from "@/app/types/merchants";
 import { Payment } from "@/app/types/payment";
-import { MerchantInfoMap, PaymentResult } from "@/app/types/preprocess";
+import {
+  MerchantInfo,
+  MerchantInfoMap,
+  PaymentResult,
+} from "@/app/types/preprocess";
 import { StackChartFormat } from "./../../types/preprocess";
 
 export const calculatePaymentRate = (data: Payment[]) => {
@@ -116,33 +120,6 @@ export const calculatePaymentMethodPieData = (data: Payment[]) => {
   };
 };
 
-// 2개의 아이템을 한다면은?
-
-// 아래는 가메정 디테일 리스트
-//  {
-//     "mchtCode": "MCHT-CAFE-001",
-//     "mchtName": "브런치커피 강남점",
-//     "status": "ACTIVE",
-//     "bizType": "CAFE",
-//     "bizNo": "101-11-00001",
-//     "address": "서울 강남구 테헤란로 100",
-//     "phone": "02-111-0001",
-//     "email": "gangnam@brunchcafe.com",
-//     "registeredAt": "2025-10-01T00:00:00",
-//     "updatedAt": "2025-10-01T00:00:00"
-//   },
-
-// 아래는 결제 리스트
-// {
-//   "paymentCode": "PAY-20251103-0004",
-//   "mchtCode": "MCHT-MART-003",
-//   "amount": "25000.00",
-//   "currency": "KRW",
-//   "payType": "DEVICE",
-//   "status": "SUCCESS",
-//   "paymentAt": "2025-11-03T02:00:00"
-// },
-
 const matchWithMchtCode = (
   merchantInfoBase: MerchantInfoMap,
   merchantsDetailInfo: MerchantListItem[]
@@ -176,15 +153,31 @@ export const calculateMerchandisesStackBarData = (
       merchantInfoBase[mchtCode] = {
         mchtCode,
         totalAmount: numAmount,
+        transCount: 1,
       };
     } else {
       const total = merchantInfoBase[mchtCode].totalAmount;
+      const count = merchantInfoBase[mchtCode].transCount;
       merchantInfoBase[mchtCode] = {
         ...merchantInfoBase[mchtCode],
         totalAmount: total + numAmount,
+        transCount: count + 1,
       };
     }
   });
 
   return matchWithMchtCode(merchantInfoBase, merchantsDetailInfo);
+};
+
+const sortedDescendingByTotalAmount = (data: MerchantInfo[]) => {
+  return data.toSorted((a, b) => b.totalAmount - a.totalAmount);
+};
+
+const topNData = (data: MerchantInfo[], n: number) => {
+  return data.slice(0, n);
+};
+
+export const getTopNByTotalAmount = (data: MerchantInfo[], n: number) => {
+  const sorted = sortedDescendingByTotalAmount(data);
+  return topNData(sorted, n);
 };
