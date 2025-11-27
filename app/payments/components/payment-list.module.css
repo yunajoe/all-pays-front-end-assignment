@@ -5,6 +5,7 @@
   justify-content: center;
   width: 100%;
   padding: 20px;
+  padding-bottom: 10%;
 }
 
 .wrapper {
@@ -37,7 +38,15 @@
   cursor: pointer;
   width: 100%;
 }
-
+.filterButton {
+  width: 30%;
+  padding: 10px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--blue-20);
+}
 @media (min-width: 768px) {
   .container {
     max-width: 800px;

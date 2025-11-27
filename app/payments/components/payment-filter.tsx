@@ -1,29 +1,54 @@
 "use client";
+import { usePaymentFilterModalStore } from "@/app/store/payment-filter-modal";
 import { usePaymentFilterStore } from "@/app/store/payment-filter-store";
+import { Payment } from "@/app/types/payment";
 import { X } from "lucide-react";
 import { payStatus, payTypes } from "../utils/const";
 import styles from "./payment-filter.module.css";
 
-function PaymentFilter() {
+interface PaymentFilterProps {
+  paymentsData: Payment[];
+  setPaymentsData: React.Dispatch<React.SetStateAction<Payment[]>>;
+}
+
+function PaymentFilter({ paymentsData, setPaymentsData }: PaymentFilterProps) {
   const {
     selectedPayTypes,
     setSelectedPayTypes,
     selectedPayStatus,
     setSelectedPayStatus,
   } = usePaymentFilterStore();
+  const { handleFilterModalClose } = usePaymentFilterModalStore();
 
-  console.log(
-    "selectedPayTYpes =>>",
-    selectedPayTypes,
-    "selectedPaySTatus ===>>",
-    selectedPayStatus
-  );
+  const handleReset = () => {
+    setSelectedPayTypes([]);
+    setSelectedPayStatus([]);
+  };
+  const handleApply = () => {
+    const copyData = [...paymentsData];
+    if (selectedPayTypes.length === 0 && selectedPayStatus.length === 0) {
+      setPaymentsData(copyData);
+      handleFilterModalClose();
+      return;
+    }
+
+    const result = copyData.filter(
+      (item) =>
+        selectedPayTypes.includes(item.payType) ||
+        selectedPayStatus.includes(item.status)
+    );
+    setPaymentsData(result);
+    handleFilterModalClose();
+  };
   return (
     <div className={styles.container}>
       <div className={styles.modal}>
         <div className={styles.header}>
           <h2 className={styles.title}>상세 필터</h2>
-          <button className={styles.closeButton}>
+          <button
+            className={styles.closeButton}
+            onClick={handleFilterModalClose}
+          >
             <X size={24} />
           </button>
         </div>
@@ -86,42 +111,17 @@ function PaymentFilter() {
             </div>
           </div>
         </div>
-
-        {/* 결제 금액 */}
-        {/* <div className={styles.section}>
-          <label className={styles.label}>결제 금액</label>
-          <div className={styles.amountContainer}>
-            <input
-              type="number"
-              placeholder="최소 금액"
-              value={0}
-              onChange={(e) => {}}
-              className={styles.input}
-            />
-            <span className={styles.currency}>원</span>
-            <span className={styles.separator}>~</span>
-            <input
-              type="number"
-              placeholder="최대 금액"
-              value={0}
-              onChange={(e) => {}}
-              className={styles.input}
-            />
-            <span className={styles.currency}>원</span>
-          </div>
-        </div> */}
-
         {/* 버튼 */}
         <div className={styles.buttonContainer}>
           <button
-            onClick={() => {}}
+            onClick={handleReset}
             className={styles.resetButton}
             type="button"
           >
             초기화
           </button>
           <button
-            onClick={() => {}}
+            onClick={handleApply}
             className={styles.applyButton}
             type="button"
           >
