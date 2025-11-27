@@ -6,6 +6,12 @@
   width: 100%;
 }
 
+.topRankTableContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
 .title {
   font-size: 2rem;
   font-weight: var(--font-weight-semibold);

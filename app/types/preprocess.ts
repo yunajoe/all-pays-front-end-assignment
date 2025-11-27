@@ -20,9 +20,10 @@ export type StackChartFormat = Record<
 export interface MerchantInfoBase {
   mchtCode: string;
   totalAmount: number;
+  transCount: number;
 }
 
-interface MerchantInfo extends MerchantInfoBase {
+export interface MerchantInfo extends MerchantInfoBase {
   mchtName?: string;
   bizType?: string;
   status?: string;
