@@ -67,93 +67,95 @@
 
 ## 파일구조
 
+```
 app
-┣ api
-┃ ┣ common
-┃ ┃ ┗ index.ts
-┃ ┣ merchants
-┃ ┃ ┗ index.ts
-┃ ┣ payments
-┃ ┃ ┗ index.ts
-┃ ┗ index.ts
-┣ components
-┃ ┣ dropdown
-┃ ┃ ┣ dropdown.module.css
-┃ ┃ ┗ index.tsx
-┃ ┣ footer
-┃ ┃ ┣ footer.module.css
-┃ ┃ ┗ index.tsx
-┃ ┣ header
-┃ ┃ ┣ header.module.css
-┃ ┃ ┗ index.tsx
-┃ ┣ modal
-┃ ┃ ┣ modal-background.module.css
-┃ ┃ ┗ modal-background.tsx
-┃ ┗ pagination
-┃ ┃ ┣ index.tsx
-┃ ┃ ┗ pagination.module.css
-┣ dashboard
-┃ ┣ components
-┃ ┃ ┣ card
-┃ ┃ ┃ ┣ kpi-card.tsx
-┃ ┃ ┃ ┗ payment-method-card.tsx
-┃ ┃ ┣ chart
-┃ ┃ ┃ ┗ stack-bar-chart.tsx
-┃ ┃ ┣ kpi
-┃ ┃ ┃ ┣ kpi-container.module.css
-┃ ┃ ┃ ┗ kpi-container.tsx
-┃ ┃ ┣ merchant
-┃ ┃ ┃ ┣ merchant-container.module.css
-┃ ┃ ┃ ┗ merchant-container.tsx
-┃ ┃ ┣ payment
-┃ ┃ ┃ ┣ payment-method-container.module.css
-┃ ┃ ┃ ┗ payment-method-container.tsx
-┃ ┃ ┗ table
-┃ ┃ ┃ ┣ payment-method-table.module.css
-┃ ┃ ┃ ┣ payment-method-table.tsx
-┃ ┃ ┃ ┣ top-rank-merchants-table.module.css
-┃ ┃ ┃ ┗ top-rank-merchants-table.tsx
-┃ ┣ utils
-┃ ┃ ┣ const.ts
-┃ ┃ ┗ index.ts
-┃ ┣ dashboard.module.css
-┃ ┗ page.tsx
-┣ hooks
-┃ ┗ use-debounce.tsx
-┣ merchants
-┃ ┣ [id]
-┃ ┃ ┣ components
-┃ ┃ ┃ ┣ merchant-item.module.css
-┃ ┃ ┃ ┗ merchant-item.tsx
-┃ ┃ ┗ page.tsx
-┃ ┣ components
-┃ ┃ ┣ merchant-list.module.css
-┃ ┃ ┗ merchant-list.tsx
-┃ ┣ utils
-┃ ┃ ┣ const.ts
-┃ ┃ ┗ index.ts
-┃ ┗ page.tsx
-┣ payments
-┃ ┣ components
-┃ ┃ ┣ payment-filter.module.css
-┃ ┃ ┣ payment-filter.tsx
-┃ ┃ ┣ payment-list.module.css
-┃ ┃ ┗ payment-list.tsx
-┃ ┣ utils
-┃ ┃ ┣ const.ts
-┃ ┃ ┗ index.ts
-┃ ┗ page.tsx
-┣ store
-┃ ┣ payment-filter-modal.ts
-┃ ┗ payment-filter-store.ts
-┣ types
-┃ ┣ common.ts
-┃ ┣ merchants.ts
-┃ ┣ payment.ts
-┃ ┗ preprocess.ts
-┣ error.tsx
-┣ globals.css
-┣ layout.tsx
-┣ not-found.tsx
-┣ page.tsx
-┗ reset.css
+ ┣ api
+ ┃ ┣ common
+ ┃ ┃ ┗ index.ts
+ ┃ ┣ merchants
+ ┃ ┃ ┗ index.ts
+ ┃ ┣ payments
+ ┃ ┃ ┗ index.ts
+ ┃ ┗ index.ts
+ ┣ components
+ ┃ ┣ dropdown
+ ┃ ┃ ┣ dropdown.module.css
+ ┃ ┃ ┗ index.tsx
+ ┃ ┣ footer
+ ┃ ┃ ┣ footer.module.css
+ ┃ ┃ ┗ index.tsx
+ ┃ ┣ header
+ ┃ ┃ ┣ header.module.css
+ ┃ ┃ ┗ index.tsx
+ ┃ ┣ modal
+ ┃ ┃ ┣ modal-background.module.css
+ ┃ ┃ ┗ modal-background.tsx
+ ┃ ┗ pagination
+ ┃ ┃ ┣ index.tsx
+ ┃ ┃ ┗ pagination.module.css
+ ┣ dashboard
+ ┃ ┣ components
+ ┃ ┃ ┣ card
+ ┃ ┃ ┃ ┣ kpi-card.tsx
+ ┃ ┃ ┃ ┗ payment-method-card.tsx
+ ┃ ┃ ┣ chart
+ ┃ ┃ ┃ ┗ stack-bar-chart.tsx
+ ┃ ┃ ┣ kpi
+ ┃ ┃ ┃ ┣ kpi-container.module.css
+ ┃ ┃ ┃ ┗ kpi-container.tsx
+ ┃ ┃ ┣ merchant
+ ┃ ┃ ┃ ┣ merchant-container.module.css
+ ┃ ┃ ┃ ┗ merchant-container.tsx
+ ┃ ┃ ┣ payment
+ ┃ ┃ ┃ ┣ payment-method-container.module.css
+ ┃ ┃ ┃ ┗ payment-method-container.tsx
+ ┃ ┃ ┗ table
+ ┃ ┃ ┃ ┣ payment-method-table.module.css
+ ┃ ┃ ┃ ┣ payment-method-table.tsx
+ ┃ ┃ ┃ ┣ top-rank-merchants-table.module.css
+ ┃ ┃ ┃ ┗ top-rank-merchants-table.tsx
+ ┃ ┣ utils
+ ┃ ┃ ┣ const.ts
+ ┃ ┃ ┗ index.ts
+ ┃ ┣ dashboard.module.css
+ ┃ ┗ page.tsx
+ ┣ hooks
+ ┃ ┗ use-debounce.tsx
+ ┣ merchants
+ ┃ ┣ [id]
+ ┃ ┃ ┣ components
+ ┃ ┃ ┃ ┣ merchant-item.module.css
+ ┃ ┃ ┃ ┗ merchant-item.tsx
+ ┃ ┃ ┗ page.tsx
+ ┃ ┣ components
+ ┃ ┃ ┣ merchant-list.module.css
+ ┃ ┃ ┗ merchant-list.tsx
+ ┃ ┣ utils
+ ┃ ┃ ┣ const.ts
+ ┃ ┃ ┗ index.ts
+ ┃ ┗ page.tsx
+ ┣ payments
+ ┃ ┣ components
+ ┃ ┃ ┣ payment-filter.module.css
+ ┃ ┃ ┣ payment-filter.tsx
+ ┃ ┃ ┣ payment-list.module.css
+ ┃ ┃ ┗ payment-list.tsx
+ ┃ ┣ utils
+ ┃ ┃ ┣ const.ts
+ ┃ ┃ ┗ index.ts
+ ┃ ┗ page.tsx
+ ┣ store
+ ┃ ┣ payment-filter-modal.ts
+ ┃ ┗ payment-filter-store.ts
+ ┣ types
+ ┃ ┣ common.ts
+ ┃ ┣ merchants.ts
+ ┃ ┣ payment.ts
+ ┃ ┗ preprocess.ts
+ ┣ error.tsx
+ ┣ globals.css
+ ┣ layout.tsx
+ ┣ not-found.tsx
+ ┣ page.tsx
+ ┗ reset.css
+```
