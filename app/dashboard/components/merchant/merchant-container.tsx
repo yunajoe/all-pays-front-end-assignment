@@ -40,9 +40,9 @@ function MerchantContainer({
         <TopRankMerchantsTable data={rankedData} />
       </div>
       <div className={styles.chartContainer}>
-        <div>
+        <div className={styles.chart}>
           <h3 className={styles.subTitle}>가맹점열 결제 금액 비교</h3>
-          <Bar options={options} data={result} />;
+          <Bar options={options} data={result} />
         </div>
       </div>
     </div>
