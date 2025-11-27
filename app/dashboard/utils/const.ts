@@ -1,4 +1,7 @@
-import { StackChartFormat } from "@/app/types/preprocess";
+import {
+  StackChartFormat,
+  TopRankStackChartFormat,
+} from "@/app/types/preprocess";
 
 export const PAYMENT_METHOD_TABLE_TITLES = [
   "결제 수단",
@@ -91,4 +94,34 @@ export const PAYMENT_METHOD_PIE_DATA = (
       },
     ],
   };
+};
+
+export const TOP_N_MERCHANTS_STACK_BAR_DATA = (
+  labels: string[],
+  data: TopRankStackChartFormat
+) => {
+  const options = {
+    responsive: true,
+    scales: {
+      x: {
+        stacked: true,
+      },
+      y: {
+        stacked: true,
+      },
+    },
+  };
+
+  const result = {
+    labels,
+    datasets: [
+      {
+        label: "결제 금액",
+        data: labels.map((label) => data[label].totalAmount),
+        backgroundColor: "rgb(16, 185, 129)",
+      },
+    ],
+  };
+
+  return { options, result };
 };

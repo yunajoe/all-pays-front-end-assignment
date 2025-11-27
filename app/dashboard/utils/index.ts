@@ -100,12 +100,12 @@ export const calculatePaymentMethodTableData = (data: Payment[]) => {
 };
 
 export const calculatePaymentMethodStackBarData = (data: PaymentResult[]) => {
-  const newObject: StackChartFormat = {};
+  const paymentMap: StackChartFormat = {};
   data.forEach((item) => {
     const { payType, success, fail, successAmount, failAmount } = item;
-    newObject[payType] = { success, fail, successAmount, failAmount };
+    paymentMap[payType] = { success, fail, successAmount, failAmount };
   });
-  return newObject;
+  return paymentMap;
 };
 
 export const calculatePaymentMethodPieData = (data: Payment[]) => {

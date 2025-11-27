@@ -17,6 +17,13 @@ export type StackChartFormat = Record<
   }
 >;
 
+export type TopRankStackChartFormat = Record<
+  string,
+  {
+    totalAmount: number;
+  }
+>;
+
 export interface MerchantInfoBase {
   mchtCode: string;
   totalAmount: number;
