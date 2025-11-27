@@ -1,4 +1,5 @@
 "use client";
+import ModalBackground from "@/app/components/modal/modal-background";
 import { usePaymentFilterModalStore } from "@/app/store/payment-filter-modal";
 import { Payment } from "@/app/types/payment";
 import { useState } from "react";
@@ -10,15 +11,19 @@ interface PaymentListProps {
 }
 function PaymentList({ data }: PaymentListProps) {
   const [paymentsData, setPaymentsData] = useState(data);
-  const { isFilterModalOpen, handleFilterModalOpen, handleFilterModalClose } =
+  const { isFilterModalOpen, handleFilterModalOpen } =
     usePaymentFilterModalStore();
   return (
     <>
       <div className={styles.container}>
         <div className={styles.wrapper}>
           <h2 className={styles.title}>거래 내역 리스트 목록</h2>
-          <button onClick={handleFilterModalOpen}>상세 필터</button>
-          {/* <PaymentFilter /> */}
+          <button
+            onClick={handleFilterModalOpen}
+            className={styles.filterButton}
+          >
+            상세 필터
+          </button>
           <div className={styles.cardListContainer}>
             {paymentsData.map((item, index) => {
               const {
@@ -42,7 +47,15 @@ function PaymentList({ data }: PaymentListProps) {
           </div>
         </div>
       </div>
-      {isFilterModalOpen && <PaymentFilter />}
+
+      {isFilterModalOpen && (
+        <ModalBackground>
+          <PaymentFilter
+            paymentsData={paymentsData}
+            setPaymentsData={setPaymentsData}
+          />
+        </ModalBackground>
+      )}
     </>
   );
 }
