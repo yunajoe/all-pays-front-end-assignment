@@ -51,6 +51,7 @@ function PaymentList({ data }: PaymentListProps) {
       {isFilterModalOpen && (
         <ModalBackground>
           <PaymentFilter
+            originalData={data}
             paymentsData={paymentsData}
             setPaymentsData={setPaymentsData}
           />

@@ -7,11 +7,16 @@ import { payStatus, payTypes } from "../utils/const";
 import styles from "./payment-filter.module.css";
 
 interface PaymentFilterProps {
+  originalData: Payment[];
   paymentsData: Payment[];
   setPaymentsData: React.Dispatch<React.SetStateAction<Payment[]>>;
 }
 
-function PaymentFilter({ paymentsData, setPaymentsData }: PaymentFilterProps) {
+function PaymentFilter({
+  originalData,
+  paymentsData,
+  setPaymentsData,
+}: PaymentFilterProps) {
   const {
     selectedPayTypes,
     setSelectedPayTypes,
@@ -23,21 +28,40 @@ function PaymentFilter({ paymentsData, setPaymentsData }: PaymentFilterProps) {
   const handleReset = () => {
     setSelectedPayTypes([]);
     setSelectedPayStatus([]);
+    setPaymentsData(originalData);
   };
   const handleApply = () => {
-    const copyData = [...paymentsData];
+    const copyData = [...originalData];
     if (selectedPayTypes.length === 0 && selectedPayStatus.length === 0) {
       setPaymentsData(copyData);
       handleFilterModalClose();
       return;
     }
 
-    const result = copyData.filter(
-      (item) =>
-        selectedPayTypes.includes(item.payType) ||
+    // 결제 수단과 결제 상태가 둘다 있을떄
+    if (selectedPayTypes.length > 0 && selectedPayStatus.length > 0) {
+      const result1 = copyData.filter((item) =>
+        selectedPayTypes.includes(item.payType)
+      );
+      const result2 = result1.filter((item) =>
         selectedPayStatus.includes(item.status)
-    );
-    setPaymentsData(result);
+      );
+      setPaymentsData(result2);
+    }
+    // 결제 수단만 잇을떄
+    if (selectedPayTypes.length > 0 && selectedPayStatus.length === 0) {
+      const result1 = copyData.filter((item) =>
+        selectedPayTypes.includes(item.payType)
+      );
+      setPaymentsData(result1);
+    }
+    // 결제 상태만 있을떄
+    if (selectedPayTypes.length === 0 && selectedPayStatus.length > 0) {
+      const result1 = copyData.filter((item) =>
+        selectedPayStatus.includes(item.status)
+      );
+      setPaymentsData(result1);
+    }
     handleFilterModalClose();
   };
   return (
